@@ -15,5 +15,7 @@ const division = function(a, b) {
 }
 
 const operate = function(operator, a, b) {
-    
+    if (operator === "+") {
+       return addition(a,b);
+    }
 }
