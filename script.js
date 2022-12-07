@@ -1,3 +1,5 @@
+// BASIC MATH FUNCTIONS
+
 const addition = function(a, b) {
     return (Number(a + b));
 }
