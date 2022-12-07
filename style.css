@@ -1,0 +1,59 @@
+/* Color palette: colorpalettes.net/color-palette-4508*/
+
+body {
+    display: flex;
+    justify-content: center;
+    margin-top: 64px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: #6A7793;
+    padding: 32px 16px;
+    border-style: solid;
+    border-color: #CFD1E0;
+    gap: 4px;
+    width: 300px;
+    height: 300px;
+}
+
+.display {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 4px 8px;
+    gap: 16px;
+    background-color: #F9F7FA;
+    border-style: solid;
+    border-color: #CFD1E0
+}
+
+.display .inputtext {
+    font-size: 16px;
+}
+
+.display .answertext {
+    font-size: 22px;
+}
+
+.mistake {
+    height: 50px;
+    display: flex;
+}
+
+.mistake button {
+    flex: 1;
+}
+
+.numpad {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.numpad button {
+    flex: 1, 1, 25%;
+    padding: 8px 16px;
+}
