@@ -4,7 +4,8 @@ const clear = document.querySelector(".clear");
 const back = document.querySelector(".back");
 
 // NUMBER BUTTONS
-const one = document.querySelector(".one");
+const numberButton = document.querySelectorAll("[numbutton]");
+/*const one = document.querySelector(".one");
 const two = document.querySelector(".two");
 const three = document.querySelector(".three");
 const four = document.querySelector(".four");
@@ -13,7 +14,7 @@ const six = document.querySelector(".six");
 const seven = document.querySelector(".seven");
 const eight = document.querySelector(".eight");
 const nine = document.querySelector(".nine");
-const dot = document.querySelector(".dot");
+const dot = document.querySelector(".dot");*/
 
 // OPERATION BUTTONS
 const plus = document.querySelector(".add");
@@ -56,6 +57,8 @@ const operate = function(operator, a, b) {
 
 // ---BUTTON FUNCTIONALITY---
 // NUMBER BUTTONS
-one.addEventListener("click", () => {
+numberButton.forEach((button) => {
+    button.addEventListener("click", () => {
 
+    });
 });
