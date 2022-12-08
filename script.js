@@ -20,6 +20,11 @@ const solutionText = document.querySelector(".answertext");
 inputText.innerText = "";
 solutionText.innerText = "";
 
+// BASIC VARIABLES
+shouldUpdate = true;
+firstNum = "";
+secondNum = "";
+currentOperator = "";
 
 // ---BASIC MATH FUNCTIONS---
 
@@ -39,18 +44,69 @@ const division = function(a, b) {
     return (Number(a / b));
 }
 
-const operate = function(operator) {
-
+const operate = function(operator, num1, num2) {
+    if(inputText.textContent === "") return;
 }
 
 // ---BUTTON FUNCTIONALITY---
-// NUMBER BUTTONS
+// NUMBER AND OPERATOR BUTTONS
 numberButton.forEach((button) => {
     button.addEventListener("click", () => {
         updateInput(button.textContent);
+        shouldUpdate = true;
     });
+});
+
+plus.addEventListener("click", () => {
+    if(shouldUpdate) {
+        currentOperator = "+";
+        updateInput(plus.textContent);
+        shouldUpdate = false;
+    }
+});
+
+minus.addEventListener("click", () => {
+    if(shouldUpdate) {
+    updateInput(minus.textContent);
+    shouldUpdate = false;
+    }
+});
+
+multiply.addEventListener("click", () => {
+    if(shouldUpdate) {
+    updateInput(multiply.textContent);
+    shouldUpdate = false;
+    }
+});
+
+divide.addEventListener("click", () => {
+    if(shouldUpdate) {
+    updateInput(divide.textContent);
+    shouldUpdate = false;
+    }
+});
+
+equals.addEventListener("click", () => {
+    if (inputText.textContent.includes("+")){
+        inputText.textContent.split("+")
+    }
+});
+
+// CLEAR AND DELETE BUTTONS
+clear.addEventListener("click", () => {
+    inputText.textContent = "";
+    solutionText.textContent = "";
+    shouldUpdate = true;
+});
+
+back.addEventListener("click", () => {
+    inputText.textContent = inputText.textContent.toString().slice(0, -1);
 });
 
 function updateInput(num) {
     inputText.textContent += num;
+}
+
+function updateOperator(op) {
+
 }
