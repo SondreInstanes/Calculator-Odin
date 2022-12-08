@@ -29,7 +29,7 @@ currentOperator = "";
 // ---BASIC MATH FUNCTIONS---
 
 const addition = function(a, b) {
-    return (Number(a + b));
+    return Number(Number(a) + Number(b));
 }
 
 const subtraction = function(a, b) {
@@ -46,6 +46,12 @@ const division = function(a, b) {
 
 const operate = function(operator, num1, num2) {
     if(inputText.textContent === "") return;
+    if (operator === "+") {
+        const result = Number(addition(num1, num2));
+        firstNum = result;
+        secondNum = "";
+        solutionText.textContent = result;
+    }
 }
 
 // ---BUTTON FUNCTIONALITY---
@@ -60,6 +66,13 @@ numberButton.forEach((button) => {
 plus.addEventListener("click", () => {
     if(shouldUpdate) {
         currentOperator = "+";
+        if (firstNum === ""){
+            firstNum = inputText.textContent;
+        } else if (firstNum !== "" && secondNum === "") {
+            const tempNum = inputText.textContent.split("+");
+            secondNum = tempNum[1];
+            operate(currentOperator, firstNum, secondNum);
+        }
         updateInput(plus.textContent);
         shouldUpdate = false;
     }
@@ -87,15 +100,16 @@ divide.addEventListener("click", () => {
 });
 
 equals.addEventListener("click", () => {
-    if (inputText.textContent.includes("+")){
-        inputText.textContent.split("+")
-    }
+    if (firstNum === "") return;
+    operate(currentOperator, firstNum, secondNum);
 });
 
 // CLEAR AND DELETE BUTTONS
 clear.addEventListener("click", () => {
     inputText.textContent = "";
     solutionText.textContent = "";
+    firstNum = "";
+    secondNum = "";
     shouldUpdate = true;
 });
 
