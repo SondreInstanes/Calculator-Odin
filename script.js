@@ -46,6 +46,10 @@ const operate = function(operator, num1, num2) {
         return addition(num1, num2);
     } else if (operator === "−") {
         return subtraction(num1, num2);
+    } else if (operator === "×") {
+        return multiplication(num1, num2);
+    } else if (operator === "÷") {
+        return division(num1, num2);
     }
 }
 
@@ -69,7 +73,8 @@ operateButton.forEach((button) => {
 
 equals.addEventListener("click", () => {
     if (firstNum === "") return;
-    operate(currentOperator, firstNum, secondNum);
+    updateOperator(equals.textContent);
+    inputText.textContent += equals.textContent;
 });
 
 // CLEAR AND DELETE BUTTONS
