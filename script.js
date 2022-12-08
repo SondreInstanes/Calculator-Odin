@@ -43,7 +43,9 @@ const division = function(a, b) {
 const operate = function(operator, num1, num2) {
     if(inputText.textContent === "") return;
     if (operator === "+") {
-        return addition(firstNum, secondNum);
+        return addition(num1, num2);
+    } else if (operator === "−") {
+        return subtraction(num1, num2);
     }
 }
 
@@ -59,6 +61,7 @@ numberButton.forEach((button) => {
 
 operateButton.forEach((button) => {
     button.addEventListener("click", () => {
+        if(!shouldUpdate) return;
         updateOperator(button.textContent);
         inputText.textContent += button.textContent;
     })
@@ -77,6 +80,7 @@ clear.addEventListener("click", () => {
     firstNum = "";
     secondNum = "";
     shouldUpdate = true;
+    currentOperator = "";
 });
 
 back.addEventListener("click", () => {
@@ -95,6 +99,7 @@ function updateOperator(op) {
     }
     tempNum = "";
     currentOperator = op;
+    shouldUpdate = false;
 }
 
 function checkOperator() {
