@@ -17,6 +17,7 @@ solutionText.innerText = "";
 
 // BASIC VARIABLES
 let shouldUpdate = true;
+let equalsUsed = false;
 let tempNum = "";
 let firstNum = "";
 let secondNum = "";
@@ -57,6 +58,7 @@ const operate = function(operator, num1, num2) {
 // NUMBER AND OPERATOR BUTTONS
 numberButton.forEach((button) => {
     button.addEventListener("click", () => {
+        if (equalsUsed) return;
         tempNum += button.textContent;
         updateInput(button.textContent);
         shouldUpdate = true;
@@ -66,6 +68,11 @@ numberButton.forEach((button) => {
 operateButton.forEach((button) => {
     button.addEventListener("click", () => {
         if(!shouldUpdate) return;
+        if (equalsUsed) {
+            inputText.textContent = inputText.textContent.toString().slice(0, -1);
+            equalsUsed = false;
+            shouldUpdate = false;
+        }
         updateOperator(button.textContent);
         inputText.textContent += button.textContent;
     })
@@ -73,8 +80,10 @@ operateButton.forEach((button) => {
 
 equals.addEventListener("click", () => {
     if (firstNum === "") return;
-    updateOperator(equals.textContent);
+    if (equalsUsed) return;
+    updateOperator(currentOperator);
     inputText.textContent += equals.textContent;
+    equalsUsed = true;
 });
 
 // CLEAR AND DELETE BUTTONS
@@ -85,6 +94,7 @@ clear.addEventListener("click", () => {
     firstNum = "";
     secondNum = "";
     shouldUpdate = true;
+    equalsUsed = false;
     currentOperator = "";
 });
 
@@ -104,10 +114,17 @@ function updateOperator(op) {
     }
     tempNum = "";
     currentOperator = op;
-    shouldUpdate = false;
+    if (equalsUsed) {
+        shouldUpdate = false;
+    }
+
 }
 
 function checkOperator() {
+    if (currentOperator === "÷" && (firstNum === "0" || secondNum === "0" || tempNum === "0")) {
+        alert("You are currently breaking time and space. Refresh to fix.");
+        return;
+    }
     secondNum = tempNum;
     const result = operate(currentOperator, firstNum, secondNum);
     solutionText.textContent = result;
